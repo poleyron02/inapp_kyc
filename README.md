@@ -1,39 +1,66 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# InAppKYC Flutter Package
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+The InAppKYC Flutter package provides developers with a comprehensive solution for implementing Know Your Customer (KYC) verification directly within their Flutter applications. This package leverages machine learning techniques to enable facial recognition and liveness detection, ensuring secure and reliable identity verification.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Features:
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+1. **Facial Recognition:** Utilize advanced facial recognition technology to compare the user's face captured via camera with the face on their identification card.
 
-## Features
+2. **Liveness Detection:** Conduct liveness tests to verify user presence and prevent spoofing, enhancing the security of the KYC process.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+3. **Easy Integration:** Simple APIs for seamless integration into Flutter applications, minimizing development effort and time-to-market.
 
-## Getting started
+4. **Customizable UI:** Flexibility to customize the user interface to match your application's branding and design aesthetics.
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## How to Use:
 
-## Usage
+1. **Initialize InAppKYC:**
+  ```dart
+  var inAppKYC = await InAppKYC.initialize();
+  ```
+   
+2. **Start KYC Process:**
+  ```dart
+  await inAppKYC.initID();
+  await inAppKYC.initLiveness();
+  ```
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+3. **Capture ID Image:**
+  ```dart
+  await inAppKYC.processID();
+  ```
 
-```dart
-const like = 'sample';
-```
+4. **Capture Liveness Image:**
+  ```dart
+  await inAppKYC.takePicture(kycResultNotifier);
+  ```
 
-## Additional information
+5. **Start Liveness Detection:**
+  ```dart
+  await inAppKYC.startLiveness(kycResultNotifier);
+  ```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+6. **Compare ID and Liveness Images:**
+  ```dart
+  double result = await inAppKYC.compare();
+  ```
+
+## Sample Usage:
+  ```dart
+  var inAppKYC = await InAppKYC.initialize();
+  await inAppKYC.initID();
+  await inAppKYC.initLiveness();
+  await inAppKYC.processID();
+  await inAppKYC.takePicture(kycResultNotifier);
+  await inAppKYC.startLiveness(kycResultNotifier);
+  double result = await inAppKYC.compare();
+  ```
+
+## Requirements:
+* Flutter: >=2.0.0
+* Supported Platforms: Android, iOS
+
+**Dependencies:**
+* camera: ^0.9.4+5
+* google_ml_kit: ^0.7.0
+* tflite_flutter: ^0.7.0
